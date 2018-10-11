@@ -14,4 +14,10 @@ public class Lecturer
         v_specialty = "none";
         v_wantProjector = false;
     }
+
+    Lecturer(String specialty, boolean wantProjector)
+    {
+        v_specialty = specialty;
+        v_wantProjector = wantProjector;
+    }
 }
