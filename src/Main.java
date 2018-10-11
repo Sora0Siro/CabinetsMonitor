@@ -2,7 +2,9 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Cabinet[] building = new Cabinet[10];
+        int CabinetsCount = 100;
+        Cabinet[] building = new Cabinet[CabinetsCount];
+
         for(int i =0;i<building.length;i++)
         {
             building[i] = new Cabinet();
