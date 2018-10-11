@@ -1,3 +1,5 @@
+import java.util.Random;
+
 interface Characteristics
 {
     void cabinetFloor(int floor);
@@ -10,6 +12,7 @@ interface Characteristics
 
 public class Cabinet implements Characteristics
 {
+    private Random rnd = new Random();
     private int v_cabinetFloor; //этаж на котором находится аудитория
     private int v_studentsCapacity; // кол-во мест для студентов
     private int v_computersCount; // кол-во настольных компьютеров в аудитории
@@ -18,7 +21,7 @@ public class Cabinet implements Characteristics
     private boolean v_airConditioning; //наявность кондиционера в аудитории
     private boolean v_projector; //наявность проектора в аудитории
 
-    Cabinet()
+    /*Cabinet()
     {
         //variable
         v_cabinetFloor = 1;
@@ -27,6 +30,17 @@ public class Cabinet implements Characteristics
         v_laptopCapacity = 1;
         v_airConditioning = false;
         v_projector = false;
+    }*/
+
+    Cabinet()
+    {
+        //variable
+        v_cabinetFloor = rnd.nextInt(5 + 1)  + 1;
+        v_studentsCapacity = rnd.nextInt(9 + 1)  + 20;
+        v_computersCount = rnd.nextInt(9 + 1)  + 30;
+        v_laptopCapacity = rnd.nextInt(9 + 1)  + 5;
+        v_airConditioning = rnd.nextBoolean();
+        v_projector = rnd.nextBoolean();
     }
 
     public void cabinetFloor(int floor)
@@ -57,5 +71,42 @@ public class Cabinet implements Characteristics
     public void projector(boolean value)
     {
         v_projector = value;
+    }
+
+    //return
+    public int getcabinetFloor()
+    {
+        return v_cabinetFloor;
+    }
+
+    public int getstudentsCapacity()
+    {
+        return v_studentsCapacity;
+    }
+
+    public int getcomputersCount()
+    {
+        return v_computersCount;
+    }
+
+    public int getlaptopCapacity()
+    {
+        return v_laptopCapacity;
+    }
+
+    public boolean getairConditioning()
+    {
+        return v_airConditioning;
+    }
+
+    public boolean getprojector()
+    {
+        return v_projector;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "=================="+ "\nWhich floor:" +v_cabinetFloor + "\nStudents capacity:" + v_studentsCapacity + "\nComputers count: "+ v_computersCount +"\nLaptop capacity: " +v_laptopCapacity + "\nAir conditioning: " + v_airConditioning;
     }
 }
