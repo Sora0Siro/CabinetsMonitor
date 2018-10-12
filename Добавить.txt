@@ -1,0 +1,6 @@
+*1.reading names from file
+*1.1 add surnames in file
+
+*2.delete sout from main
+
+*3. add overtime hours payment

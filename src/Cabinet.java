@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 interface Characteristics
@@ -20,6 +22,7 @@ public class Cabinet implements Characteristics
     private int v_roomNumber; // номер аудитории
     private boolean v_airConditioning; //наявность кондиционера в аудитории
     private boolean v_projector; //наявность проектора в аудитории
+    private ArrayList<Lecturer> v_Lecturers = new ArrayList<>();
 
     /*Cabinet()
     {
@@ -32,10 +35,10 @@ public class Cabinet implements Characteristics
         v_projector = false;
     }*/
 
-    Cabinet()
+    public Cabinet()
     {
         //variable
-        v_cabinetFloor = rnd.nextInt(5 + 1)  + 1;
+        v_cabinetFloor = rnd.nextInt(4 + 1)  + 1;
         v_studentsCapacity = rnd.nextInt(9 + 1)  + 20;
         v_computersCount = rnd.nextInt(9 + 1)  + 30;
         v_laptopCapacity = rnd.nextInt(9 + 1)  + 5;
@@ -73,6 +76,12 @@ public class Cabinet implements Characteristics
         v_projector = value;
     }
 
+    public void addLecturer(Lecturer lecturer)
+    {
+        v_Lecturers.add(lecturer);
+        lecturer.minusHour();
+    }
+
     //return
     public int getcabinetFloor()
     {
@@ -104,9 +113,26 @@ public class Cabinet implements Characteristics
         return v_projector;
     }
 
+    public ArrayList<Lecturer> getLecturersList()
+    {
+        return v_Lecturers;
+    }
+
     @Override
     public String toString()
     {
-        return "=================="+ "\nWhich floor:" +v_cabinetFloor + "\nStudents capacity:" + v_studentsCapacity + "\nComputers count: "+ v_computersCount +"\nLaptop capacity: " +v_laptopCapacity + "\nAir conditioning: " + v_airConditioning;
+        return "=================="+ "\nWhich floor:" +v_cabinetFloor + "\nStudents capacity:" + v_studentsCapacity + "\nComputers count: "+ v_computersCount +"\nLaptop capacity: " +v_laptopCapacity + "\nAir conditioning: " + v_airConditioning + "\nIs there projector: " + v_projector;
+    }
+
+    //methods
+    public void showLecturersInCabinet()
+    {
+        int i=0;
+        for(Lecturer l:v_Lecturers)
+        {
+            System.out.println(i + "lesson is: " + l.getName());
+            i++;
+        }
+        System.out.println("==============================");
     }
 }

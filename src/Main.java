@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
@@ -71,5 +72,37 @@ public class Main
         System.out.println(lecturers2018.get(1).getSpecialty());
 
         //Назначение преподавателю кабинета для пар
+        Lecturer l2 = new Lecturer();
+        Lecturer l3 = new Lecturer();
+        l2.setIfWantProjector(true);
+        l2.setNumberOfLectures(5);
+        l3.setIfWantProjector(false);
+
+
+        //Заполнение всех работочасов у преподавателя
+        for(int j=0;j<lecturers2018.size();j++) //0-2 преподаватели
+        {
+            for(int i =0;i<cabinets.size() && lecturers2018.get(j).getNumberOfLectures()>0;i++) //проверка всех кабинетов 0-99
+            {
+                    //если в кабинете есть проектор и преподавателю нужен проектор -> добавляем преподавателя в кабинет
+                    if (cabinets.get(i).getprojector() && lecturers2018.get(j).getIfWantProjectorB())
+                        cabinets.get(i).addLecturer(lecturers2018.get(j));
+                        //если в кабинете нет проектора и преподавателю он не нужен -> добавляем препода в кабинет
+                    else if (!cabinets.get(i).getprojector() && !lecturers2018.get(j).getIfWantProjectorB())
+                        cabinets.get(i).addLecturer(lecturers2018.get(j));
+            }
+        }
+
+        for(Cabinet c:cabinets) if(!c.getLecturersList().isEmpty())c.showLecturersInCabinet();
+
+
+        //Заполнение работочасов вручную
+        System.out.println(l2.getNumberOfLectures());
+        cabinets.get(0).addLecturer(l2);
+        System.out.println(l2.getNumberOfLectures());
+        System.out.println(l3.getNumberOfLectures());
+        cabinets.get(0).addLecturer(l3);
+        System.out.println(l3.getNumberOfLectures());
+        cabinets.get(0).showLecturersInCabinet();
     }
 }
